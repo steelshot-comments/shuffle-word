@@ -1,14 +1,14 @@
 const names = [
-  { id: 1, name: "isha agarwal", scrambled: "" },
-  { id: 2, name: "ryan dchuna", scrambled: "" },
-  { id: 3, name: "rahul gupta", scrambled: "" },
-  { id: 4, name: "sahil sheikh", scrambled: "" },
-  { id: 5, name: "deva nadar", scrambled: "" },
-  { id: 6, name: "johanna rodrigues", scrambled: "" },
-  { id: 7, name: "feba thomas", scrambled: "" },
-  { id: 8, name: "alethea rangaya", scrambled: "" },
-  { id: 9, name: "archi mehta", scrambled: "" },
-  { id: 10, name: "yeshaya varghese", scrambled: "" },
+  { id: 1, name: "isha agarwal", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 2, name: "ryan dchuna", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 3, name: "rahul gupta", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 4, name: "sahil sheikh", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 5, name: "deva nadar", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 6, name: "johanna rodrigues", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 7, name: "feba thomas", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 8, name: "alethea rangaya", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 9, name: "archi mehta", scrambled: "", completed: false, elementReferrence: "" },
+  { id: 10, name: "yeshaya varghese", scrambled: "", completed: false, elementReferrence: "" },
 ];
 let currentEntry, currentName, currentScrambledName
 let remaingShuffles = 5, lives = 5;
@@ -92,10 +92,12 @@ function shuffleArray(arr) {
 
 function validateAnswer() {
   if(lives != 0){
-    let answer = $("#userInput").val().replace(/[^A-Za-z\s]/g, '').replace(/[ ]{2,}/g, ' ').toLowerCase();
+    let answer = $("#userInput").val().replace(/\s{1,}$/gi, '').replace(/[ ]{2,}/g, ' ');
 
     if (answer === currentName) {
       alert("You got it right!!");
+      currentEntry["completed"] = true;
+      console.log(currentEntry["elementReferrence"]);
     } else {
       alert("Your answer is wrong!!");
       lives -= 1;

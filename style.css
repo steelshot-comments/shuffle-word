@@ -24,3 +24,7 @@
 .active{
   background-color: #7c2d12;
 }
+
+.completed{
+  cursor: not-allowed;
+}
